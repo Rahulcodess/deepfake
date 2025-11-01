@@ -16,4 +16,5 @@ COPY . .
 ENV PORT=7860
 EXPOSE 7860
 
-CMD ["uvicorn", "server.main:app", "--host", "0.0.0.0", "--port", "7860"]
+# Use PORT env var (Railway sets this dynamically)
+CMD ["sh", "-c", "uvicorn server.main:app --host 0.0.0.0 --port ${PORT:-7860}"]
